@@ -6,7 +6,7 @@
 /*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/04 14:40:40 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:57:57 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 int	ft_handler(int signal)
 {
-	int bit;
+	static int bit;
+	static int i;
 
 	bit = 0;
-	while (bit < 8)
+	i = 0;
+
+	bit++;
+	if (bit == 8)
 	{
-		
+		ft_printf("%c", i);
+		bit = 0;
+		i = 0;
 	}
 }
+
 int	main(int ac, char **av)
 {
 	int pid;
