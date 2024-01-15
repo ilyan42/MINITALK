@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/14 16:29:54 by ilyanbendib      ###   ########.fr       */
+/*   Updated: 2024/01/15 12:10:29 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,18 @@ int main(int ac, char **av)
 	(void)av;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 	{
-		perror("Error configuring signal manager for SIGUSR1\n");
+		printf("Error configuring signal manager for SIGUSR1\n");
 		exit(EXIT_FAILURE);
 	}
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
-		perror("Error configuring signal manager for SIGUSR1\n");
+		printf("Error configuring signal manager for SIGUSR2\n");
 		exit(EXIT_FAILURE);
 	}
 	int pid = getpid();
 	printf("%d\n", pid);
 	while (ac == 1)
 	{
-		sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &sa, NULL);
 		pause();
 	}
 	return 0;
