@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/12 15:20:15 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:28:31 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 
 	if (ac == 3)
 	{
-		pid = ft_atoi(av[1]);
+		pid = atoi(av[1]);
 		while (av[2][i])
 		{
 			ft_check_bit(pid, av[2][i]);

@@ -3,52 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/12 16:10:02 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:29:54 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-int	ft_check_user_1(int signal, const struct sigaction *act, int *not_use)
+void ft_check_signal(int sig)
 {
 	static int bit;
-	static char user1;
-	
-	bit = 0;
-	(void)not_use;
-	if (signal == SIGUSR1)
-		user1 |= (bit << 0x01);
+	static int i;
+
+	if (sig == SIGUSR1)
+	{
+		i |= (0x01 << bit);
+	}
+	bit++;
+
+	if (bit == 8) {
+		printf("%c", i);
+		bit = 0;
+		i = 0;
+	}
 }
 
-int	ft_check_user_2(int signal, const struct sigaction *act, int *not_use)
+int main(int ac, char **av)
 {
-	static int bit;
-	static char user2;
-	
-	bit = 0;
-	(void)not_use;
-	if (signal == SIGUSR2)
-		user2 &= ~(bit << 0x01);
-}
+	struct sigaction sa;
 
-int	main(int ac, char **av)
-{
-	int pid;
+	sa.sa_handler = ft_check_signal;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 
 	(void)av;
-	if (ac != 1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 	{
-		printf("Error\nError signal generation");
+		perror("Error configuring signal manager for SIGUSR1\n");
+		exit(EXIT_FAILURE);
 	}
-	pid = getpid();
+	if (sigaction(SIGUSR2, &sa, NULL) == -1)
+	{
+		perror("Error configuring signal manager for SIGUSR1\n");
+		exit(EXIT_FAILURE);
+	}
+	int pid = getpid();
 	printf("%d\n", pid);
-	while(ac == 1)
+	while (ac == 1)
 	{
-		signal(SIGUSR1, ft_check_user_1);
-		signal(SIGUSR2, ft_check_user_2);
+		sigaction(SIGUSR1, &sa, NULL);
+		sigaction(SIGUSR2, &sa, NULL);
+		pause();
 	}
-	return (0);
+	return 0;
 }
