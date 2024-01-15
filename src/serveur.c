@@ -6,7 +6,7 @@
 /*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 15:01:59 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:57:10 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,21 @@ void ft_check_signal(int signal, siginfo_t *info, void *note_use)
 	static int bit;
 	static int i;
 
-	(void)info;
 	(void)note_use;
 	if (signal == SIGUSR1)
 	{
 		i |= (0x01 << bit);
 	}
-	bit++;
-
 	if (bit == 8)
 	{
-		printf("%c", i);
+		if (i == 0)
+			kill (info->si_pid, SIGUSR2);
+		ft_printf("%c", i);
 		bit = 0;
 		i = 0;
 	}
+	kill(info->si_pid, SIGUSR1);
+	bit++;
 }
 
 int	main(void)
@@ -49,7 +50,7 @@ int	main(void)
 	action.sa_sigaction = ft_check_signal;
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
-	printf("PID server -> %d\n", pid);
+	ft_printf("PID server -> %d\n", pid);
 	while (1)
 		pause();
 	return (0);
