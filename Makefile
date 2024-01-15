@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+         #
+#    By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 17:49:42 by ilbendib          #+#    #+#              #
-#    Updated: 2024/01/15 15:18:18 by ilbendib         ###   ########.fr        #
+#    Updated: 2024/01/15 15:21:57 by ilyanbendib      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ HEADERS = $(_HEADERS:%=$(HEADERS_DIR)/%)
 OBJS_CLIENT = $(SRC_CLIENT:.c=.o)
 OBJS_SERVER = $(SRC_SERVER:.c=.o)
 
+LIBFT_DIR = ./LIBFT
+LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT_MAKE = $(MAKE) -C $(LIBFT_DIR)
+
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
 client: $(NAME_CLIENT)
@@ -41,20 +45,24 @@ server: $(NAME_SERVER)
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS_DIR) -c $< -o $@
 
-$(NAME_CLIENT): $(OBJS_CLIENT)
-	$(MAKE) all -C ./LIBFT
-	$(CC) $(OBJS_CLIENT) $(LDFLAGS) libft.a -o $(NAME_CLIENT)
+$(NAME_CLIENT): $(OBJS_CLIENT) $(LIBFT)
+	$(LIBFT_MAKE)
+	$(CC) $(OBJS_CLIENT) $(LDFLAGS) $(LIBFT) -o $(NAME_CLIENT)
 
-$(NAME_SERVER): $(OBJS_SERVER)
-	$(MAKE) all -C ./LIBFT
-	$(CC) $(OBJS_SERVER) $(LDFLAGS) -o $(NAME_SERVER)
+$(NAME_SERVER): $(OBJS_SERVER) $(LIBFT)
+	$(LIBFT_MAKE)
+	$(CC) $(OBJS_SERVER) $(LDFLAGS) $(LIBFT) -o $(NAME_SERVER)
+
+$(LIBFT):
+	$(LIBFT_MAKE)
 
 clean:
 	rm -f $(OBJS_CLIENT) $(OBJS_SERVER)
+	$(LIBFT_MAKE) clean
 
 fclean: clean
 	rm -f $(NAME_CLIENT) $(NAME_SERVER)
-	$(MAKE) fclean -C ./LIBFT
+	$(LIBFT_MAKE) fclean
 
 re: fclean all
 
