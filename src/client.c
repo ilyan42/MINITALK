@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 11:55:16 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:14:04 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int ac, char **av)
 			ft_check_bit(pid, av[2][i]);
 			i++;
 		}
-		kill(pid, SIGUSR1);
+		ft_check_bit(pid, '\n');
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 12:10:29 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:21:07 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void ft_check_signal(int sig)
 
 int main(int ac, char **av)
 {
+	(void)av;
 	struct sigaction sa;
-
 	sa.sa_handler = ft_check_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-
-	(void)av;
+	int pid = getpid();
+	printf("%d\n", pid);
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 	{
 		printf("Error configuring signal manager for SIGUSR1\n");
@@ -49,8 +49,6 @@ int main(int ac, char **av)
 		printf("Error configuring signal manager for SIGUSR2\n");
 		exit(EXIT_FAILURE);
 	}
-	int pid = getpid();
-	printf("%d\n", pid);
 	while (ac == 1)
 	{
 		pause();
