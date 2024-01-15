@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 12:56:57 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:02:45 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,22 @@ void	ft_check_bit(int pid, char i)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int argc, char **argv)
 {
-	int pid;
-	int i = 0;
+	pid_t	pid;
+	int		i;
 
-	if (ac == 3)
+	pid = atoi(argv[1]);
+	i = -1;
+	// signal(SIGUSR1, validation_server);
+	// signal(SIGUSR2, validation_server);
+	if (argc == 3)
 	{
-		pid = atoi(av[1]);
-		printf("PID: %d\n", pid);
-		while (av[2][i] != '\0')
-		{	
-			ft_check_bit(pid, av[2][i]);
-			i++;
-		}
+		while (argv[2][++i])
+			ft_check_bit(pid, argv[2][i]);
 		ft_check_bit(pid, '\n');
+		ft_check_bit(pid, 0);
+		// while (1)
+		// 	pause();
 	}
-	return (0);
 }
