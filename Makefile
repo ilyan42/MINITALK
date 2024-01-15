@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+         #
+#    By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 17:49:42 by ilbendib          #+#    #+#              #
-#    Updated: 2024/01/14 16:22:40 by ilyanbendib      ###   ########.fr        #
+#    Updated: 2024/01/15 15:18:18 by ilbendib         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ server: $(NAME_SERVER)
 
 $(NAME_CLIENT): $(OBJS_CLIENT)
 	$(MAKE) all -C ./LIBFT
-	$(CC) $(OBJS_CLIENT) $(LDFLAGS) -o $(NAME_CLIENT)
+	$(CC) $(OBJS_CLIENT) $(LDFLAGS) libft.a -o $(NAME_CLIENT)
 
 $(NAME_SERVER): $(OBJS_SERVER)
 	$(MAKE) all -C ./LIBFT

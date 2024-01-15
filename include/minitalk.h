@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:35:09 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/14 16:13:32 by ilyanbendib      ###   ########.fr       */
+/*   Updated: 2024/01/15 15:01:35 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 #endif
