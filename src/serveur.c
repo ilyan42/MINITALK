@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:12:38 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 18:51:44 by ilyanbendib      ###   ########.fr       */
+/*   Updated: 2024/01/16 13:57:52 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void ft_check_signal(int signal, siginfo_t *info, void *note_use)
 		exit(EXIT_FAILURE);
 	}
 	if (bit < 0)
-		bit = __CHAR_BIT__ * sizeof(c) - 1;
+		bit = 7;
 	if (signal == SIGUSR1)
 		c |= 1 << bit;
 	else if (signal == SIGUSR2)
@@ -57,9 +57,7 @@ int	main(void)
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }
 

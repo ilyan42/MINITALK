@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 18:58:51 by ilyanbendib      ###   ########.fr       */
+/*   Updated: 2024/01/16 14:01:05 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	ft_check_output(int signal)
 	else if (signal == SIGUSR1)
 		validation_check = 1;
 }
+
 void	ft_check_bit(int pid, unsigned char c)
 {
 	int	bit;
 
-	bit = __CHAR_BIT__ * sizeof(c) - 1;
+	bit = 7;
 	while (bit >= 0)
 	{
 		validation_check = 0;
@@ -57,8 +58,5 @@ int	main(int argc, char **argv)
 			ft_check_bit(pid, argv[2][i]);
 		ft_check_bit(pid, '\n');
 		ft_check_bit(pid, 0);
-		while (1)
-			pause();
 	}
 }
-
