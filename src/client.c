@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/15 16:56:19 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:58:51 by ilyanbendib      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ void	ft_check_output(int signal)
 	else if (signal == SIGUSR1)
 		validation_check = 1;
 }
-void	ft_check_bit(int pid, char i)
+void	ft_check_bit(int pid, unsigned char c)
 {
-	int bit;
-	
-	bit = 0;
-	while (bit < 8)
+	int	bit;
+
+	bit = __CHAR_BIT__ * sizeof(c) - 1;
+	while (bit >= 0)
 	{
 		validation_check = 0;
-		if (i & (0x01 << bit))
-			kill (pid, SIGUSR1);
+		if (c & (1 << bit))
+			kill(pid, SIGUSR1);
 		else
-			kill (pid, SIGUSR2);
-		bit++;
-		while(validation_check != 1)
+			kill(pid, SIGUSR2);
+		bit--;
+		while (validation_check != 1)
 			usleep(100);
 	}
 }
@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 
 	pid = ft_atoi(argv[1]);
 	i = -1;
-	signal(SIGUSR1, &ft_check_output);
-	signal(SIGUSR2, &ft_check_output);
+	signal(SIGUSR1, ft_check_output);
+	signal(SIGUSR2, ft_check_output);
 	if (argc == 3)
 	{
 		while (argv[2][++i])
