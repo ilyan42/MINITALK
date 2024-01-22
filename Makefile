@@ -6,11 +6,12 @@
 #    By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 17:49:42 by ilbendib          #+#    #+#              #
-#    Updated: 2024/01/22 15:47:07 by ilyanbendib      ###   ########.fr        #
+#    Updated: 2024/01/22 16:04:22 by ilyanbendib      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_CLIENT = src/client.c
+SRCS_SERVER = src/serveur.c
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
