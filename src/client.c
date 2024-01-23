@@ -6,7 +6,7 @@
 /*   By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:53:06 by ilbendib          #+#    #+#             */
-/*   Updated: 2024/01/16 14:01:05 by ilbendib         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:23:15 by ilbendib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ int	main(int argc, char **argv)
 	i = -1;
 	signal(SIGUSR1, ft_check_output);
 	signal(SIGUSR2, ft_check_output);
+	if (argc != 3 || !argv[2][0] || pid < 0)
+	{
+		ft_putstr_fd("Error arguments, please try again.\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (pid == 0)
+	{
+		ft_putstr_fd("Error: PID 0 is reserved for the kernel.\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (argc == 3)
 	{
 		while (argv[2][++i])

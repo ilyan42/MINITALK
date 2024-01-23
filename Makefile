@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ilyanbendib <ilyanbendib@student.42.fr>    +#+  +:+       +#+         #
+#    By: ilbendib <ilbendib@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 17:49:42 by ilbendib          #+#    #+#              #
-#    Updated: 2024/01/22 16:04:22 by ilyanbendib      ###   ########.fr        #
+#    Updated: 2024/01/23 10:13:43 by ilbendib         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_CLIENT = src/client.c
-SRCS_SERVER = src/serveur.c
+SRCS_SERVER = src/server.c
 
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
@@ -21,7 +21,7 @@ NAME_CLIENT = client
 
 CC = gcc -g3
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -Llibft -lft
+LDFLAGS = -LLIBFT -lft
 
 LIBFT_DIR = ./LIBFT
 LIBFT = $(LIBFT_DIR)/libft.a
